@@ -1,0 +1,59 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define int long long
+#define endl '\n'
+#define inf 0x3f3f3f3f3f3f3f3f
+typedef unsigned long long ULL;
+typedef pair<int, int> PII;
+const int N = 1e6 + 10;
+const int mod = 998244353;
+int h[N];
+int a[N], b[N];
+
+void solve() {
+    int n;
+    cin >> n;
+    for (int i = 1; i <= n; ++i) {
+        cin >> a[i];
+    }
+    map<int, int> mp;
+
+    mp[0] = 1;
+    int ans = 0;
+    int sum = 0;
+    for (int i = 1; i <= n; ++i) {
+        if (i % 2 == 1) {
+            sum += a[i];
+        } else {
+            sum -= a[i];
+        }
+        if (mp.find(sum) != mp.end()) {
+            ans += 1;
+        } 
+        mp[sum] ++;
+    }
+    if (ans != 0) {
+        cout << "YES\n";
+    } else {
+        cout << "NO\n";
+    }
+}
+
+signed main() {
+    ios::sync_with_stdio(0);
+    cin.tie(0), cout.tie(0);
+#define ONLINE_JUDGE
+#ifndef ONLINE_JUDGE
+    std::ifstream in("in.txt");
+    std::cin.rdbuf(in.rdbuf());
+    std::ofstream out("out.txt");
+    std::cout.rdbuf(out.rdbuf());
+#endif
+    
+    int T = 1;
+    cin >> T;
+    while (T--) {
+        solve();
+    }
+    return 0;
+}
